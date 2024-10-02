@@ -46,6 +46,16 @@ h1 {
     position: relative;
 }
 
+.refid {
+    width: 60% !important;
+    margin: 0 auto; /* This will center the element horizontally */
+    text-align: center;
+    display: flex;
+    flex-direction: column; /* Stack label and input vertically */
+    align-items: center; /* Center the label and input horizontally */
+}
+
+
 .qr-code {
     max-width: 200px;
     width: 100%;
