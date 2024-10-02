@@ -104,6 +104,8 @@ h1 {
     position: absolute;
     bottom: 20px;
     font-size: 1.0rem;
+    text-decoration: none;
+
 }
 
 .location {
@@ -130,6 +132,7 @@ h1 {
     .location, .event-date {
         position: static;
         margin-top: 10px;
+        text-decoration: none;
     }
 }
 
