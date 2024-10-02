@@ -15,18 +15,6 @@ body, html {
     overflow: hidden;
 }
 
-/* #bg-video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    transform: translateX(-50%) translateY(-50%);
-    z-index: -1;
-} */
-
 .overlay {
     position: absolute;
     top: 0;
@@ -121,6 +109,7 @@ h1 {
 .location {
     left: 20px;
     color: black;
+    text-decoration: none;
 }
 
 .event-date {
