@@ -27,7 +27,8 @@
             </div>
             <div class="form-group">
                 <label for="contact">Contact No.</label>
-                <input type="number" id="contact" name="contact" pattern="\d{10}" minlength="10" maxlength="10" required>
+                <input type="text" id="contact" name="contact" minlength="10" maxlength="10" required oninput="validateLength(this)">
+                <span id="error-message" style="color:red; display:none;">Invalid Mobile No.</span>
             </div>
             <div class="form-group">
                 <label for="persons">Number of Persons</label>
