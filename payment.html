@@ -51,8 +51,8 @@
                 <input type="text" id="contactNumberInput" name="contactNumber" readonly>
             </div>
             <div class="form-group">
-                <label for="ref id">UPI Ref Id:</label>
-                <input type="text" id="upirefid" name="upirefid" required placeholder="12-digit UPI refId">
+                <label for="ref id">UPI Transaction Id:</label>
+                <input type="text" id="upirefid" name="upirefid" required placeholder="12-digit UPI Transaction-Id" pattern="\d{12}" title="Only Numerical Values are allowed" maxlength="12">
             </div>
             <!-- <div class="form-group">
                 <label for="receipt">Upload Payment Receipt:</label>
