@@ -9,6 +9,10 @@ const amount = persons * 300;
 const date = urlParams.get('date');
 const contactNumber = urlParams.get('contact');
 
+// new button 
+const upiField = document.getElementById('upirefid');
+const paidBtn = document.getElementById('paidBtn');
+
 // Format date
 function formatDate(dateString) {
   const options = { day: 'numeric', month: 'long', year: 'numeric' };
@@ -43,6 +47,35 @@ const timerInterval = setInterval(() => {
   }
   timeLeft--;
 }, 1000);
+
+//here is the UPI ID INPUT IS PAID BUTTON
+function validateUPIField() {
+  const upiValue = upiField.value;
+  const alertBox = document.getElementById('alertBox'); // Assuming you have an alert box element
+  const isValid = /^\d{12}$/.test(upiValue); // Check if exactly 12 digits
+
+  if (!upiValue) {
+    // If the field is empty, show a yellow alert
+    alertBox.textContent = 'Please fill the UPI Transaction ID';
+    alertBox.style.backgroundColor = 'transparent';
+    alertBox.style.display = 'block';
+    paidBtn.disabled = true;
+  } else if (!isValid) {
+    // If the UPI ID is invalid (not 12 digits), show a yellow alert
+    alertBox.textContent = 'Please Input the Valid UPI ID';
+    alertBox.style.backgroundColor = 'transparent';
+    alertBox.style.display = 'block';
+    paidBtn.disabled = true;
+  } else {
+    // If the UPI ID is valid, hide the alert and enable the button
+    alertBox.style.display = 'none';
+    paidBtn.disabled = false;
+  }
+}
+
+// Add event listener to UPI field for input validation
+upiField.addEventListener('input', validateUPIField);
+
 
 // Button event listeners
 document.getElementById('paidBtn').addEventListener('click', showPaymentForm);
