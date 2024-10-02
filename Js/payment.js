@@ -56,13 +56,13 @@ function validateUPIField() {
 
   if (!upiValue) {
     // If the field is empty, show a yellow alert
-    alertBox.textContent = 'Please fill the UPI Transaction ID';
+    alertBox.textContent = 'Please fill a UPI Transaction ID';
     alertBox.style.backgroundColor = 'transparent';
     alertBox.style.display = 'block';
     paidBtn.disabled = true;
   } else if (!isValid) {
     // If the UPI ID is invalid (not 12 digits), show a yellow alert
-    alertBox.textContent = 'Please Input the Valid UPI ID';
+    alertBox.textContent = 'Please Input a Valid UPI Transaction ID';
     alertBox.style.backgroundColor = 'transparent';
     alertBox.style.display = 'block';
     paidBtn.disabled = true;
