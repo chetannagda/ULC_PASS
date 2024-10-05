@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const contact = document.getElementById('contact').value;
         const persons = parseInt(document.getElementById('persons').value);
         const date = document.getElementById('date').value;
-        const totalPrice = persons * 280; // Total price (280 per person)
+        const totalPrice = persons * 250; // Total price (280 per person)
 
         // Validate the contact number before submitting the form
         if (contact.length !== 10) {
