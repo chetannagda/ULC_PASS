@@ -1,33 +1,44 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Set the date we're counting down to (Oct 3, 2024 at 7:00:00 PM IST)
-    const countDownDate = new Date("Oct 3, 2024 19:00:00 GMT+0530").getTime();
+    function updateEventStatus() {
+        const now = new Date();
+        const eventStart = new Date(now);
+        eventStart.setHours(19, 0, 0, 0); // 7:00 PM
+        const eventEnd = new Date(now);
+        eventEnd.setHours(22, 30, 0, 0); // 10:30 PM
 
-    // Update the countdown every 1 second
-    const x = setInterval(function() {
-        // Get current date and time
-        const now = new Date().getTime();
+        const countdownElement = document.getElementById("countdown");
+        const eventMessageElement = document.getElementById("event-message");
 
-        // Find the distance between now and the count down date
-        const distance = countDownDate - now;
+        if (now >= eventStart && now < eventEnd) {
+            // Event is ongoing
+            countdownElement.style.display = "none";
+            eventMessageElement.textContent = "The Event has Started! Hurry up, buy your passes and enjoy!";
+        } else {
+            // Event is not ongoing, show countdown
+            countdownElement.style.display = "flex";
+            eventMessageElement.textContent = "Let's Meet at ULC in";
 
-        // Time calculations for days, hours, minutes, and seconds
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            let targetTime;
+            if (now < eventStart) {
+                targetTime = eventStart;
+            } else {
+                targetTime = new Date(eventStart);
+                targetTime.setDate(targetTime.getDate() + 1);
+            }
 
-        // Display the result in the element with corresponding id
-        document.getElementById("days").textContent = days.toString().padStart(2, '0');
-        document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
-        document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
-        document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
+            const timeDiff = targetTime - now;
+            const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
 
-        // If the count down is finished, write some text
-        if (distance < 0) {
-            clearInterval(x);
-            document.querySelector(".timer").innerHTML = "The event has started!";
+            document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
         }
-    }, 1000);
+    }
+
+    // Update event status every second
+    setInterval(updateEventStatus, 1000);
 
     // Function to update current IST date and time
     function updateISTDateTime() {
@@ -52,11 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Update IST date and time every second
     setInterval(updateISTDateTime, 1000);
 
-    // Initial call to display time immediately
+    // Initial calls to display time and event status immediately
     updateISTDateTime();
-
-    // Add click event to the booking button
-    // document.querySelector('.book-ticket').addEventListener('click', function() {
-    //     window.location.href = '../bookticket.html';
-    // });
+    updateEventStatus();
 });
