@@ -56,13 +56,13 @@ function validateUPIField() {
 
   if (!upiValue) {
     // If the field is empty, show a yellow alert
-    alertBox.textContent = 'Please fill a UPI Transaction ID';
+    alertBox.textContent = 'Please fill the UPI Transaction ID';
     alertBox.style.backgroundColor = 'transparent';
     alertBox.style.display = 'block';
     paidBtn.disabled = true;
   } else if (!isValid) {
     // If the UPI ID is invalid (not 12 digits), show a yellow alert
-    alertBox.textContent = 'Please Input a Valid UPI Transaction ID';
+    alertBox.textContent = 'Please Input the Valid UPI ID';
     alertBox.style.backgroundColor = 'transparent';
     alertBox.style.display = 'block';
     paidBtn.disabled = true;
@@ -79,16 +79,49 @@ upiField.addEventListener('input', validateUPIField);
 
 // Button event listeners
 document.getElementById('paidBtn').addEventListener('click', showPaymentForm);
-document.getElementById('notPaidBtn').addEventListener('click', () => window.location.href = 'index.html');
-// document.getElementById('submitBtn').addEventListener('click', handleSubmit);
+document.getElementById('codBtn').addEventListener('click', handleCOD);
 
 function showPaymentForm() {
-  document.getElementById('qrSection').classList.add('hidden');
-  document.getElementById('paymentForm').classList.remove('hidden');
-  clearInterval(timerInterval);
+    document.getElementById('qrSection').classList.add('hidden');
+    document.getElementById('paymentForm').classList.remove('hidden');
+    clearInterval(timerInterval);
 }
-    const thankYouMessage = document.getElementById('thankYouMessage');
 
+function handleCOD() {
+    // Redirect to COD details page with necessary information
+    const codUrl = `../cod.html?name=${encodeURIComponent(name)}&amount=${amount}&date=${encodeURIComponent(date)}&contact=${encodeURIComponent(contactNumber)}`;
+    window.location.href = codUrl;
+}
+
+document.getElementById('paymentForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    // Retrieve form data
+    var name = document.getElementById('name').value;
+    var amountPaid = document.getElementById('amount').value;
+    let dateOfPasses = document.getElementById('passDateInput').value;
+    var contactNumber = document.getElementById('contactNumberInput').value;
+    var upirefid = document.getElementById('upirefid').value;
+
+    // Validate form data
+    if (!name || !amountPaid || !dateOfPasses || !contactNumber || !upirefid) {
+        alert('Please fill in all fields.');
+        return;
+    }
+
+    try {
+        // Call the function to save payment details in Firestore
+        const docId = await savePaymentDetails(name, amountPaid, dateOfPasses, contactNumber, upirefid);
+        showThankYouMessage();
+    } catch (error) {
+        alert('Error submitting your form. Please try again later.');
+    }
+});
+
+function showThankYouMessage() {
+    document.getElementById('paymentForm').classList.add('hidden');
+    document.getElementById('thankYouMessage').classList.remove('hidden');
+}
     document.getElementById('paymentForm').addEventListener('submit', async function(e) {
         e.preventDefault(); // Prevent default form submission
 
