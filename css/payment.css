@@ -125,7 +125,7 @@ input[readonly] {
     margin-top: 20px;
 }
 
-.btn {
+/* .btn {
     background-color: #FF3366;
     color: white;
     border: none;
@@ -137,7 +137,7 @@ input[readonly] {
     text-transform: uppercase;
     font-weight: bold;
     letter-spacing: 1px;
-}
+} */
 
 .btn:hover {
     background-color: #FF9933;
@@ -203,4 +203,33 @@ input[readonly] {
         height: 80px;
         top: 0px;
     }
+}
+
+.btn {
+    background-color: #FF3366;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn svg {
+    margin-right: 8px;
+}
+
+#codBtn {
+    background-color: #33CCFF;
+}
+
+#codBtn:hover {
+    background-color: #9933FF;
 }
