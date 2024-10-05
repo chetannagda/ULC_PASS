@@ -5,7 +5,7 @@ const urlParams = new URLSearchParams(window.location.search);
 
 const name = urlParams.get('name');
 const persons = parseInt(urlParams.get('persons')) || 1;
-const amount = persons * 280;
+const amount = persons * 250;
 const date = urlParams.get('date');
 const contactNumber = urlParams.get('contact');
 
