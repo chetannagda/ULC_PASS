@@ -89,7 +89,7 @@ function showPaymentForm() {
 
 function handleCOD() {
     // Redirect to COD details page with necessary information
-    const codUrl = `../cod.html?name=${encodeURIComponent(name)}&amount=${amount}&date=${encodeURIComponent(date)}&contact=${encodeURIComponent(contactNumber)}`;
+    const codUrl = `cod.html?name=${encodeURIComponent(name)}&amount=${amount}&date=${encodeURIComponent(date)}&contact=${encodeURIComponent(contactNumber)}`;
     window.location.href = codUrl;
 }
 
